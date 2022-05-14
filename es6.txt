@@ -1,0 +1,385 @@
+1.Template Reterles
+->var name="kush";
+    console.log(`my name is ${name}`)
+	
+2.Default Argument
+-> function test(x,y=2)
+    {
+        console.log(x+y);
+    }
+    test(3,7)
+    test(3)
+	
+3.Rest Parameter
+function add(...x)
+    {
+        console.log(x);
+    }
+    add(1,2,3,4,5,6);
+	
+4.saparet operater
+var arr1=[10,20,30];
+    var arr2=[40,50,60,...arr1];
+    console.log(arr2);
+	
+5.Array Destructuring
+let student=["kush","juthani",22];
+
+    let [fname,lname,age]=student;
+    console.log(age)
+	
+6.object Destructuring
+ let student={
+        name:"kush",
+        surname:"juthani",
+        age:22,
+        sub:{
+            sub1:"php",
+            sub2:"java"
+        }
+    };
+
+    let {name,surname,age,sub:{sub1,sub2:java}}=student;
+    console.log(name);
+    console.log(java);
+	
+	
+7.Fat Arror Function
+ var hello=()=>{
+        return "welcome";
+    }
+    var hello1=()=>"welcome1";
+
+    var hello2=name=>`welcome ${name}`;
+
+    var hello3=(fname,lname)=>`welcome ${fname} ${lname}`;
+
+    var hello4=()=>{
+        let a=10;
+        let b=20;
+        return a+b;
+    }
+    console.log(hello());
+    console.log(hello1());
+    console.log(hello2("kush"));
+    console.log(hello3("kush","juhtnai"));
+    console.log(hello4());
+	
+8.for in loop
+let s=['kush','alok','jerry','tom'];
+    for(let x in s){
+        console.log(s[x]);
+    }
+
+    let s1="my name is kush juthani";
+    for(let x in s1){
+        console.log(s1[x]);
+    }
+
+    let obj={
+        name:"kush",
+        age:20
+    };
+    for(let y in obj)
+    {
+        console.log(obj[y]);
+    }
+	
+	
+9.Math.sing()
+let num=10.10;
+    console.log(Math.sign(num));
+	
+	
+10.Math.trunc()
+let num=10.10;
+    console.log(Math.trunc(num));
+
+
+11.Exponentiation Operator
+ console.log(2**5);
+    console.log(2**-2);
+    console.log(3**2**3);
+	
+	
+12.isNan,IsFinite,isInteger
+ //isNan  Not a Number
+   let x=10;
+   if(isNaN(x))
+   {
+        console.log("Yes");
+   }else{
+       console.log("No");
+   }
+   //Is Finite  check number is Finite or not
+   if(isFinite(x)){
+       console.log('yes');
+   }else{
+       console.log('No');
+   }
+   //isInteger is check number is integer or not
+   if(Number.isInteger(x)){
+       console.log('yes');
+   }else{
+       console.log('No');
+   }
+   
+  13.Modules
+  //app.js
+  //first way to import the modules using bello type you can use only variable or functions
+/*import {name} from './modules/student.js'
+import {hello} from './modules/student.js'
+*/
+
+//Second wat to import the modules using bello type you can import all the variable or functions
+
+/*import {name,hello} from './modules/student.js'
+hello();
+console.log(name);
+*/
+
+// using alias 
+/*import {name,hello as stu} from './modules/student.js';
+import {hello as tea} from './modules/teacher.js';
+stu();
+tea();*/
+
+/*using alias with *  */
+import * as stu from './modules/student.js';
+import {hello as tea} from './modules/teacher.js';
+
+
+console.log(stu.name);
+stu.hello();
+
+//calling default function
+stu.default()
+
+//student.js
+//first way to export the function or variable
+/*export let name="kush";
+export var hello=()=>{
+    console.log("hello");
+}*/
+//Second way export many function or variable
+let name="kush";
+var hello=()=>{
+    console.log("hello s");
+}
+//this is default function it will export compalsari 
+export default function(){
+    console.log("Default Function");
+}
+
+export {name,hello};
+//teacher.js
+var hello=()=>{
+    console.log("hello t");
+}
+
+export {hello}; 
+
+//index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+</head>
+<body>
+    
+
+
+    <!-- include the modules entry point file that time type="module" is compalsari -->
+    <script src="app.js" type="module"></script>
+</body>
+</html>
+
+
+14.object and class
+<script>
+class emp{
+    //declare the valriable without using var,const,let in class only
+    name="kush";
+    //if you want to declare a variable as private use # 
+    #BankAccountNo=111;
+
+    //create a function in class don't write a function 
+    welcomeMsg() {
+        //if you want to access any variable in class which is declare in class then use this keyword
+        return "Welcome "+this.name;
+    }
+   
+    //if you want to access private variable then you can create get or set methods like bellow
+    //if you want to use get or set method than write get befor get method and set before set method
+    get getBankAccountNo(){
+        return this.#BankAccountNo;
+    }
+    set setBankAccountNo(value){
+        this.#BankAccountNo=value;
+    }
+}
+const emoObj=new emp();
+//console.log(emoObj.BankAccountNo);
+emoObj.setBankAccountNo=123;
+console.log(emoObj.getBankAccountNo);
+</script>
+
+
+15.Constructors
+ <script>
+class emp{
+    //it will call automatiacali when create a object of class then constructor will call automaticali
+    //in javascript no destructor concept is avlibale in javascript
+ 
+    
+    constructor(name1,name2){
+        this.fname=name1;
+        this.lname=name2;
+    }
+    getName(){
+        return `${this.fname} ${this.lname}`;
+    }
+
+    //Creating a constructor
+    /*constructor(){
+        console.log("Constructor is calling");
+    }*/
+}
+const emoObj=new emp('kush','juthani');
+//console.log(emoObj.BankAccountNo);
+
+console.log(emoObj.getName());
+
+
+const emoObj1=new emp('alok','guriya');
+//console.log(emoObj.BankAccountNo);
+
+console.log(emoObj1.getName());
+</script>
+
+16.Static methods and static variables
+<script>
+class emp{
+    //it will call automatiacali when create a object of class then constructor will call automaticali
+    //in javascript no destructor concept is avlibale in javascript
+
+    static x=0;
+    constructor(){
+        //console.log("Constructor is calling");
+    }
+
+    //Static variable only use for class name
+    static getX(){
+        emp.x++;
+        console.log(emp.x);
+    }
+}
+
+//Static function call only by it's class name only
+emp.getX();
+emp.getX();
+emp.getX();
+</script>
+
+
+17.Inheritance and polymorphism
+<script>
+    //inharite the other class use extends keyword
+    //javascript don't support multipale inheritance
+    //multilvel inheritance support by javascript
+class Student{
+    constructor (fName,lName,sClass){
+        this.firstName=fName;
+        this.lastName=lName;
+        this.sClass=sClass;
+    }
+    getName()
+    {
+        return this.firstName+' '+this.lastName;
+    }
+}
+class regStudnet extends Student{
+    
+    getFee(){
+        return this.sClass*10;
+    }
+    getName()
+    {
+        console.log(super.getName());
+        return 'Fullname '+ this.firstName+' '+this.lastName;
+    }
+}
+
+class partTStudent extends Student{
+    
+    getFee(){
+        return this.sClass*8;
+    }
+}
+const regstu = new regStudnet('kush','juthani',8);
+console.log(regstu.getName());
+console.log(regstu.getFee());
+
+const parstu = new partTStudent('kush','juthani',8);
+console.log(parstu.getName());
+console.log(parstu.getFee());
+</script>
+
+18.Promise
+<script>
+    let x=new Promise((resolve,reject)=>{
+        resolve('Done');
+    })
+
+    x.finally((list)=>{
+        console.log("Finaly ");
+    });
+    x.then((list)=>{
+        console.log(list)
+        return list+=10;
+    }).then((list)=>{
+        console.log(list)
+        return list+=10;
+    }).catch((err)=>{
+        console.log(err);
+    });
+    /*setTimeout(() => {
+        console.log(x);
+    }, 3000);*/
+</script>
+
+
+19.async 
+async function f(){
+        return 'hello';
+    }
+    let data=f();
+    console.log(data);
+	
+	
+20.Array Map
+ let arr=[1,2,3,4,5];
+ let data=arr.map(function(x){
+     return x*2;
+ });
+ console.log(data);
+
+
+ let arr1=[
+     {'name':'kush','city':'rajkot'},
+     {'name':'alok','city':'surat'},
+     {'name':'jerry','city':'rajkot'}
+ ];
+ let data1=arr1.map(function(x){
+     return x.name;
+ });
+ console.log(data1);
+ 
+21.symbol
+  let name=Symbol("kush");
+    let name1=Symbol("kush");
+    console.log(name===name1);
+    alert(name.description);
